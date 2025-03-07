@@ -4,8 +4,7 @@ This repository contains the configuration files and scripts I use to customize 
 
 ## Table of Contents  
 - [i3 Configuration](#i3-configuration)  
-- [Neovim Configuration](#neovim-configuration)  
-- [QT5ct Settings](#qt5ct-settings)  
+- [Neovim Configuration](#neovim-configuration)    
 - [Rofi Configuration](#rofi-configuration)  
 - [Shell Scripts](#shell-scripts)  
 - [Tmux Configuration](#tmux-configuration)  
@@ -28,13 +27,6 @@ The `nvim` directory contains my Neovim configuration files, leveraging Lua for 
   - `init.lua`: Main configuration file for Neovim.  
   - `lua/plugins.lua`: Plugin manager configuration using Lazy.nvim.  
   - Plugin-specific configurations in `lua/plugins`.  
-
----
-
-## QT5ct Settings  
-The `qt5ct` directory contains theme and style settings for Qt applications to ensure a consistent look and feel across the desktop.  
-
-- [QT5ct Configuration README](./qt5ct/README.md): Describes how to apply the settings.  
 
 ---
 
@@ -75,7 +67,7 @@ To set up this environment on a new system:
 
 1. Clone the repository:  
    ```bash  
-   git clone https://github.com/yourusername/dotfiles.git  
+   git clone git@github.com:SamarthPansare/dotfiles.git  
    ```
 
 Symlink the configuration files to their respective locations:
