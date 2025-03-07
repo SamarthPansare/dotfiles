@@ -67,7 +67,7 @@ To set up this environment on a new system:
 
 1. Clone the repository:  
    ```bash  
-   git clone git@github.com:SamarthPansare/dotfiles.git  
+   git clone [git@github.com:SamarthPansare/dotfiles.git](https://github.com/SamarthPansare/dotfiles.git)  
    ```
 
 Symlink the configuration files to their respective locations:
