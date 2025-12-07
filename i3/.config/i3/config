@@ -326,7 +326,8 @@ for_window [class="Nm-connection-editor"] floating enable
 
 # Specific applications
 for_window [class="Emulator"] floating enable
-for_window [title="Picture in Picture"] floating enable, sticky enable, move position center
+for_window [title="Picture-in-Picture"] floating enable, sticky enable, move position center
+for_window [title="Picture in picture"] floating enable, sticky enable, move position center
 
 # Screen sharing portal picker (xdg-desktop-portal)
 for_window [class="xdg-desktop-portal-gtk"] floating enable

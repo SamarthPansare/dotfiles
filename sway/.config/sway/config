@@ -393,7 +393,8 @@ for_window [class="Nm-connection-editor"] floating enable
 
 # Specific applications
 for_window [class="Emulator"] floating enable
-for_window [title="Picture in Picture"] floating enable, sticky enable, move position center
+for_window [title="Picture-in-Picture"] floating enable, sticky enable, move position center
+for_window [title="Picture in picture"] floating enable, sticky enable, move position center
 
 # Flameshot (proper positioning for Wayland)
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
