@@ -52,8 +52,8 @@ exec swaybg -i ~/Pictures/Wallpapers/lofi_chill_room.jpeg -m fill
 
 # CUSTOM: Idle and lock screen
 exec swayidle -w \
-    timeout 300 'swaylock -f -i ~/Pictures/Wallpapers/lofi_chill_room_blurred.png -s fill' \
-    before-sleep 'swaylock -f -i ~/Pictures/Wallpapers/lofi_chill_room_blurred.png -s fill'
+    timeout 300 'swaylock -f -i ~/Pictures/Wallpapers/lofi_chill_room_blurred.png -s fill --indicator-radius 100' \
+    before-sleep 'swaylock -f -i ~/Pictures/Wallpapers/lofi_chill_room_blurred.png -s fill --indicator-radius 100'
 
 ### Input configuration
 #
