@@ -1,0 +1,77 @@
+[global]
+    # Geometry and Position (Keep this, it's essential)
+    # geometry = "300x5-30+50" 
+    
+    # Show at the top-right corner of the screen
+    origin = top-right
+    
+    # format = "%b %s"
+
+    # Hide the notification if it stays idle for this long (in milliseconds)
+    notification_limit = 5
+    
+    # Duration in milliseconds to show the notification
+    timeout = 30000
+
+    # Draw a line between consecutive notifications if multiple stack up.
+    separator_height = 1
+    
+    # Padding on the edges
+    padding = 12
+    
+    text_icon_padding = 8
+    frame_width = 3
+
+    # The corner radius (minimalist look uses minimal or zero radius)
+    corner_radius = 8
+    
+    # Shrink the entire notification (including padding and border) if width is too large
+    shrink = yes
+
+    # --- Appearance and Fonts ---
+    font = FiraCode Medium 12
+
+    # Horizontal alignment of the text (left, center, right)
+    alignment = left
+    
+    # Show app icon inside the notification
+    icon_position = left
+    # Show age of the notification
+    # show_age_now = yes <--- REMOVED
+    
+    # --- Colors ---
+    
+    # The "frame" color (border) for all notifications.
+    frame_color = "#64727D" 
+    frame_width = 2
+    
+    # --- Behaviors ---
+    # close_on_click = true <--- REMOVED
+
+# ...
+# --- Appearance and Fonts ---
+# ...
+
+# ==============================================================================
+# URGENCY LEVELS (Colors)
+# ==============================================================================
+
+# Low urgency 
+[urgency_low]
+    # Set background to dark gray with 90% opacity
+    background = "#2B303BE6"
+    foreground = "#F8F8F2"  
+    timeout = 3000
+
+# Normal urgency 
+[urgency_normal]
+    # Use the same color for consistency, maybe slightly darker (95% opacity = F2)
+    background = "#2B303BF2" 
+    foreground = "#F8F8F2"
+    timeout = 5000
+
+# Critical urgency (Keep red, but add opacity for consistency)
+[urgency_critical]
+    background = "#eb4d4bE6" # Red with 90% opacity (Matching your Waybar critical color)
+    foreground = "#FFFFFF"
+    timeout = 0
