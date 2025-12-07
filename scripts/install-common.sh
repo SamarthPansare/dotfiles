@@ -47,6 +47,8 @@ DESKTOP_PACKAGES=(
     flameshot
     clipman
     wlogout
+    ksnip
+    simplescreenrecorder
     fonts-firacode
     fonts-roboto
     python3-i3ipc

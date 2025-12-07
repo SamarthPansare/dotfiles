@@ -44,6 +44,7 @@ PACKAGES=(
     dex
     xdotool
     dmenu
+    wireless-tools
 )
 
 # Install each package
