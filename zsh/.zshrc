@@ -112,7 +112,7 @@ source $ZSH/oh-my-zsh.sh
 # Environment Variables / PATH
 # =============================================================================
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.opencode/bin:$PATH"
 
 # Android SDK (uncomment if needed)
 # export ANDROID_HOME=$HOME/Android/Sdk
@@ -125,16 +125,16 @@ export PATH="$HOME/.local/bin:$PATH"
 # Tool Initializations
 # =============================================================================
 
+# NVM (Node Version Manager)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 # Zoxide (smart cd)
 eval "$(zoxide init zsh)"
 
 # direnv (per-directory environment)
 eval "$(direnv hook zsh)"
-
-# NVM (Node Version Manager)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # =============================================================================
 # Aliases
@@ -143,9 +143,23 @@ export NVM_DIR="$HOME/.nvm"
 # Tmux
 alias ta="tmux attach-session -t"
 
-# Work (uncomment if needed)
-# alias fb="~/work/fb"
-# alias venv="source ~/work/frappe-env/bin/activate"
+# Work
+alias fb="~/work/fb"
+
+# Gemini CLI (runs on Node 22)
+alias gem22="nvm exec 22 gemini"
+
+# Battery conservation mode (Lenovo)
+alias bat-on="echo 1 | sudo tee /sys/bus/platform/devices/VPC2004:00/conservation_mode"
+alias bat-off="echo 0 | sudo tee /sys/bus/platform/devices/VPC2004:00/conservation_mode"
+alias bat-status="cat /sys/bus/platform/devices/VPC2004:00/conservation_mode"
+
+# =============================================================================
+# Shell Integrations
+# =============================================================================
+
+# Kiro shell integration
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
 
 ###############################################################################
 #                         END OF CUSTOM CONFIGURATION

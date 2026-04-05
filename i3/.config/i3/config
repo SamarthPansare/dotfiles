@@ -31,7 +31,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/scripts/lock.sh
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/scripts/lock.sh
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -74,7 +74,8 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -261,6 +262,9 @@ default_floating_border pixel 2
 # Wallpaper (X11 uses feh, sway uses swaybg)
 exec_always --no-startup-id feh --bg-fill ~/Pictures/Wallpapers/lofi_chill_room.jpeg
 
+# Keyring daemon (needed for Mailspring, other apps that store passwords)
+exec --no-startup-id eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+
 # Compositor for X11 (transparency, no tearing)
 exec --no-startup-id xcompmgr
 
@@ -273,12 +277,28 @@ exec_always --no-startup-id /home/samarth/.config/i3/alternating_layouts.py
 # Battery monitor for low battery notifications
 exec --no-startup-id ~/.config/i3/scripts/battery-monitor.sh
 
+# Touchpad: tap-to-click + clickfinger (comment out to revert to defaults)
+# exec --no-startup-id ~/.config/i3/scripts/touchpad.sh
+
+# Notification daemon
+exec --no-startup-id dunst
+
 # =============================================================================
 # Keybindings - Launcher & Applications
 # =============================================================================
 
 # Rofi launcher (additional binding, $mod+d also works)
 bindsym $mod+t exec --no-startup-id rofi -show drun
+
+# Brave browser
+bindsym $mod+Shift+b exec --no-startup-id brave
+
+
+# Discord
+bindsym $mod+Shift+d exec --no-startup-id discord
+
+# Mailspring
+bindsym $mod+m exec --no-startup-id mailspring
 
 # Clipboard manager
 bindsym $mod+c exec --no-startup-id clipman pick -t rofi
@@ -296,6 +316,7 @@ bindsym $mod+x exec --no-startup-id wlogout
 # Flameshot
 bindsym Print exec --no-startup-id flameshot gui
 bindsym XF86SelectiveScreenshot exec --no-startup-id flameshot gui
+bindsym $mod+p exec --no-startup-id flameshot gui
 
 # =============================================================================
 # Keybindings - Brightness (synced with sway)
@@ -319,9 +340,18 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [window_role="bubble"] floating enable, move position center
 
+# Chat apps → scratchpad (title-based for portability across machines)
+for_window [title="^Telegram"] move scratchpad, resize set 1000 700
+for_window [title="^WhatsApp"] move scratchpad, resize set 1000 700
+bindsym $mod+grave [title="^Telegram"] scratchpad show, move position center
+bindsym $mod+backslash [title="^WhatsApp"] scratchpad show, move position center
+
 # System applets
 for_window [class="Blueman-manager"] floating enable
 for_window [class="Nm-connection-editor"] floating enable
+
+# PulseAudio volume control (launched from i3blocks volume click)
+for_window [class="Pavucontrol"] floating enable, resize set 800 500, move position center
 
 # Specific applications
 for_window [class="Emulator"] floating enable
@@ -335,6 +365,14 @@ for_window [title="Choose what to share"] floating enable
 
 # Close focused floating window with $mod+q
 bindsym $mod+q [floating] kill
+
+# =============================================================================
+# Workspace Layout Rules
+# =============================================================================
+
+# Force tabbed layout for workspaces 2 and 3
+for_window [workspace="2"] layout tabbed
+for_window [workspace="3"] layout tabbed
 
 ###############################################################################
 #                         END OF CUSTOM ADDITIONS

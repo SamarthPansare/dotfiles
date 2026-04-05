@@ -34,6 +34,9 @@ fi
 # Qt theme (for Qt5 applications to follow system theme)
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
+# Rust/Cargo environment
+. "$HOME/.cargo/env"
+
 ###############################################################################
 #                         END OF CUSTOM CONFIGURATION
 ###############################################################################
