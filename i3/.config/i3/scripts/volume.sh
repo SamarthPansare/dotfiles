@@ -21,7 +21,7 @@ MUTE=$(pactl get-sink-mute @DEFAULT_SINK@ | grep -o "yes\|no")
 VOL=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+(?=%)' | head -1)
 
 if [ "$MUTE" = "yes" ]; then
-    dunstify -r 9999 -u normal -t 2000 -h int:value:0 -h string:x-dunst-stack-tag:volume "🔇 Volume Muted"
+    dunstify -r 9999 -u normal -t 2000 "🔇 Volume Muted"
 else
-    dunstify -r 9999 -u normal -t 2000 -h int:value:"$VOL" -h string:x-dunst-stack-tag:volume "🔊 Volume: $VOL%"
+    dunstify -r 9999 -u normal -t 2000 "🔊 Volume: $VOL%"
 fi

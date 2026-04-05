@@ -5,7 +5,7 @@ separator_block_width=15
 markup=pango
 
 [window]
-command=TITLE=$(xdotool getactivewindow getwindowname 2>/dev/null | cut -c1-50); if [ -n "$TITLE" ]; then echo "<span font_weight='bold' font_size='12pt' foreground='#ffffff'>$TITLE</span>"; fi
+command=TITLE=$(xdotool getactivewindow getwindowname 2>/dev/null | iconv -f UTF-8 -t UTF-8 -c | cut -c1-50); if [ -n "$TITLE" ]; then TITLE=$(echo "$TITLE" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g'); echo "<span font_weight='bold' font_size='12pt' foreground='#ffffff'>$TITLE</span>"; fi
 interval=1
 align=center
 min_width=400
@@ -16,7 +16,7 @@ separator=false
 separator_block_width=50
 
 [volume]
-command=VOL=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d+(?=%)' | head -1); MUTE=$(pactl get-sink-mute @DEFAULT_SINK@ | grep -Po 'yes|no'); if [ "$MUTE" = "yes" ]; then echo "<span font_size='10pt' font_weight='bold' background='#90b1b1' foreground='#2a5c45'> 🔇 muted </span>"; else echo "<span font_size='10pt' font_weight='bold' background='#f1c40f' foreground='#000000'> 🔊 $VOL% </span>"; fi
+command=if [ "$BLOCK_BUTTON" = "1" ]; then pavucontrol & disown; fi; VOL=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d+(?=%)' | head -1); MUTE=$(pactl get-sink-mute @DEFAULT_SINK@ | grep -Po 'yes|no'); if [ "$MUTE" = "yes" ]; then echo "<span font_size='10pt' font_weight='bold' background='#90b1b1' foreground='#2a5c45'> 🔇 muted </span>"; else echo "<span font_size='10pt' font_weight='bold' background='#f1c40f' foreground='#000000'> 🔊 $VOL% </span>"; fi
 interval=1
 signal=10
 
@@ -43,7 +43,7 @@ interval=1
 signal=11
 
 [wifi]
-command=STATE_FILE=/tmp/i3blocks_wifi_state; if [ "$BLOCK_BUTTON" = "1" ]; then if [ -f "$STATE_FILE" ]; then rm "$STATE_FILE"; else touch "$STATE_FILE"; fi; fi; if [ -f "$STATE_FILE" ]; then IP=$(hostname -I | awk '{print $1}'); echo "<span font_size='10pt' font_weight='bold' background='#2980b9' foreground='#ffffff'> ᯤ $IP </span>"; else SSID=$(iwgetid -r 2>/dev/null); if [ -n "$SSID" ]; then echo "<span font_size='10pt' font_weight='bold' background='#2980b9' foreground='#ffffff'> ᯤ $SSID </span>"; else echo "<span font_size='10pt' font_weight='bold' background='#f53c3c' foreground='#ffffff'> ᯤ OFF </span>"; fi; fi
+command=STATE_FILE=/tmp/i3blocks_wifi_state; if [ "$BLOCK_BUTTON" = "1" ]; then if [ -f "$STATE_FILE" ]; then rm "$STATE_FILE"; else touch "$STATE_FILE"; fi; fi; if [ -f "$STATE_FILE" ]; then IP=$(hostname -I | awk '{print $1}'); echo "<span font_size='10pt' font_weight='bold' background='#2980b9' foreground='#ffffff'> ᯤ $IP </span>"; else SSID=$(iwgetid -r 2>/dev/null | iconv -f UTF-8 -t UTF-8 -c); if [ -n "$SSID" ]; then echo "<span font_size='10pt' font_weight='bold' background='#2980b9' foreground='#ffffff'> ᯤ $SSID </span>"; else echo "<span font_size='10pt' font_weight='bold' background='#f53c3c' foreground='#ffffff'> ᯤ OFF </span>"; fi; fi
 interval=10
 
 [battery]

@@ -18,4 +18,4 @@ BRIGHT=$(brightnessctl g)
 MAX=$(brightnessctl m)
 PERCENT=$((100 * BRIGHT / MAX))
 
-dunstify -r 9998 -u normal -t 2000 -h int:value:"$PERCENT" -h string:x-dunst-stack-tag:brightness "☀ Brightness: $PERCENT%"
+dunstify -r 9998 -u normal -t 2000 "☀ Brightness: $PERCENT%"
