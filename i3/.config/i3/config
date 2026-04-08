@@ -80,10 +80,8 @@ bindsym $mod+Return exec alacritty
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
-# A more modern dmenu replacement is rofi:
-# bindsym $mod+d exec "rofi -modi drun,run -show drun"
+# Rofi launcher (modern dmenu replacement)
+bindsym $mod+d exec --no-startup-id rofi -show drun
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
@@ -123,7 +121,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+Tab layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -290,9 +288,6 @@ exec --no-startup-id dunst
 # Keybindings - Launcher & Applications
 # =============================================================================
 
-# Rofi launcher (additional binding, $mod+d also works)
-bindsym $mod+t exec --no-startup-id rofi -show drun
-
 # Brave browser
 bindsym $mod+Shift+b exec --no-startup-id brave
 
@@ -346,8 +341,8 @@ for_window [window_role="bubble"] floating enable, move position center
 # Chat apps → scratchpad (title-based for portability across machines)
 for_window [title="^Telegram"] move scratchpad, resize set 1000 700
 for_window [title="^WhatsApp"] move scratchpad, resize set 1000 700
-bindsym $mod+grave [title="^Telegram"] scratchpad show, move position center
-bindsym $mod+backslash [title="^WhatsApp"] scratchpad show, move position center
+bindsym $mod+t [title="^Telegram"] scratchpad show, move position center
+bindsym $mod+w [title="^WhatsApp"] scratchpad show, move position center
 
 # System applets
 for_window [class="Blueman-manager"] floating enable
