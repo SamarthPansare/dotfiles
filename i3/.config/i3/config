@@ -289,7 +289,13 @@ exec --no-startup-id dunst
 # =============================================================================
 
 # Brave browser
-bindsym $mod+Shift+b exec --no-startup-id brave
+bindsym $mod+Shift+b exec --no-startup-id brave-browser
+
+# Telegram web app
+bindsym $mod+Shift+t exec --no-startup-id brave-browser --app=https://web.telegram.org/
+
+# WhatsApp web app
+bindsym $mod+Shift+w exec --no-startup-id brave-browser --app=https://web.whatsapp.com/
 
 
 # Discord
@@ -338,11 +344,11 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [window_role="bubble"] floating enable, move position center
 
-# Chat apps → scratchpad (title-based for portability across machines)
-for_window [title="^Telegram"] move scratchpad, resize set 1000 700
-for_window [title="^WhatsApp"] move scratchpad, resize set 1000 700
-bindsym $mod+t [title="^Telegram"] scratchpad show, move position center
-bindsym $mod+w [title="^WhatsApp"] scratchpad show, move position center
+# Chat apps → scratchpad (match on Brave app WM_CLASS instance; stable across title/notification changes)
+for_window [instance="web.telegram.org"] move scratchpad, resize set 1000 700
+for_window [instance="web.whatsapp.com"] move scratchpad, resize set 1000 700
+bindsym $mod+t [instance="web.telegram.org"] scratchpad show, move position center
+bindsym $mod+w [instance="web.whatsapp.com"] scratchpad show, move position center
 
 # System applets
 for_window [class="Blueman-manager"] floating enable
@@ -362,7 +368,7 @@ for_window [class="Xdg-desktop-portal-gtk"] floating enable
 for_window [title="Choose what to share"] floating enable
 
 # Close focused floating window with $mod+q
-bindsym $mod+q [floating] kill
+bindsym $mod+q [floating con_id="__focused__"] kill
 
 # =============================================================================
 # Workspace Layout Rules
@@ -371,6 +377,7 @@ bindsym $mod+q [floating] kill
 # Force tabbed layout for workspaces 2 and 3
 for_window [workspace="2"] layout tabbed
 for_window [workspace="3"] layout tabbed
+for_window [workspace="10"] layout tabbed
 
 ###############################################################################
 #                         END OF CUSTOM ADDITIONS
