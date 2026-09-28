@@ -298,6 +298,9 @@ bindsym $mod+Shift+t exec --no-startup-id brave-browser --app=https://web.telegr
 bindsym $mod+Shift+w exec --no-startup-id brave-browser --app=https://web.whatsapp.com/
 
 
+# Text editor (notes scratchpad, toggle with $mod+n)
+bindsym $mod+Shift+n exec --no-startup-id gnome-text-editor
+
 # Discord
 bindsym $mod+Shift+d exec --no-startup-id discord
 
@@ -349,6 +352,10 @@ for_window [instance="web.telegram.org"] move scratchpad, resize set 1000 700
 for_window [instance="web.whatsapp.com"] move scratchpad, resize set 1000 700
 bindsym $mod+t [instance="web.telegram.org"] scratchpad show, move position center
 bindsym $mod+w [instance="web.whatsapp.com"] scratchpad show, move position center
+
+# Text editor → scratchpad
+for_window [class="(?i)^(gnome-text-editor|org\.gnome\.TextEditor)$"] move scratchpad, resize set 1000 700
+bindsym $mod+n [class="(?i)^(gnome-text-editor|org\.gnome\.TextEditor)$"] scratchpad show, move position center
 
 # System applets
 for_window [class="Blueman-manager"] floating enable
